@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--<mapper namespace="com.firstSpring.wahkit.dao.UserMapper">-->
+    <!--<select id="selectUserByName"  resultType="User">-->
+        <!--SELECT * FROM user WHERE username = #{name}-->
+    <!--</select>-->
+    <!--<insert id="addUser" >-->
+        <!--insert into user(username,age,customerid) values (#{username},#{age},#{customerid})-->
+    <!--</insert>-->
+
+<!--</mapper>-->
+
+<mapper namespace="com.firstSpring.wahkit.dao.QuestionMapper">
+<select id="selectLastQuestions" resultType="Question">
+    select id,title,content,user_id,created_date,comment_count
+    from question
+
+    <if test="userId != 0">
+        where user_id = #{userId}
+    </if>
+    order by id desc
+    limit #{offset},#{limit}
+
+</select>
+</mapper>
